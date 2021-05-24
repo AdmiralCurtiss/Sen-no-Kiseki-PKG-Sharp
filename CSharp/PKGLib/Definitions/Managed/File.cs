@@ -129,6 +129,9 @@ namespace PKGLib.Definitions.Managed
                     return SenCompress.Decompress(uncompressedPtr, _data.Length);
             else if (CompressedFlag == CompressionType.CompressionUnknown)
                 throw new NotSupportedException("PKG Compression Type 2 not supported");
+            else if (CompressedFlag == CompressionType.CompressionRLE2)
+                fixed (byte* uncompressedPtr = _data.Span)
+                    return SenCompress.Decompress(uncompressedPtr + 4, _data.Length - 4);
             else
                 throw new NotSupportedException("Unknown Compression Format");
         }

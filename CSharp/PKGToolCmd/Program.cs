@@ -29,6 +29,7 @@ namespace PKGToolCmd
                 ShowHelp();
 
             // Set arguments.
+            _multiThreaded = false;
             for (int x = 0; x < args.Length; x++)
             {
                 if (args[x] == "--nocompress")      _noCompress      = true;
@@ -224,7 +225,8 @@ namespace PKGToolCmd
                     #if DEBUG
                     Console.WriteLine($"Extracting: {directoryName}\\{file.FileName}");
                     #endif
-                    File.WriteAllBytes($"{directoryName}\\{file.FileName}", file.GetUncompressedFile());
+                    byte[] uncompressedFile = file.GetUncompressedFile();
+                    File.WriteAllBytes($"{directoryName}\\{file.FileName}", uncompressedFile);
                 }
                 
             }

@@ -18,5 +18,9 @@
         /// </summary>
         CompressionUnknown = 2,
 
+        /// <summary>
+        /// Standard Sen no Kiseki/Phyre runtime encoding compression with extra 4 bytes (checksum?) in front of it.
+        /// </summary>
+        CompressionRLE2 = 3,
     }
 }
